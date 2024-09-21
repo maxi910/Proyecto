@@ -1,0 +1,125 @@
+def archivo(instancia, nombre):
+  with open(nombre,"w") as archivo:
+    #Primero escribimos los parametros (número de ramos, salas, capacidad de salas, alumnos por ramo)
+    archivo.write(f"asignaturas = {len(instancia['asignaturas'])};\n")
+    archivo.write(f"salas= {len(instancia['alumnosporsala'])}; \n")
+
+  #Capacidad de alumnos por ramo
+    archivo.write("CAlumnos = [")
+    primer = True
+    for i in range(len(instancia['alumnosporramo'])):
+      s,a = instancia['alumnosporramo'][i]
+      if not primer:
+        archivo.write(",")
+      archivo.write(f"{a}")
+      primer = False
+    archivo.write("];\n")
+
+    #Capacidad de la salas
+    archivo.write("CSalas = [")
+    primer = True
+    for i in range(len(instancia['alumnosporsala'])):
+      s,a = instancia['alumnosporsala'][i]
+      if not primer:
+        archivo.write(",")
+      archivo.write(f"{a}")
+      primer = False
+    archivo.write("];\n")
+
+    #Prioridades
+    archivo.write("Prioridades = [")
+    primer = True
+    for i in range(len(instancia['prioridades'])):
+      s,a = instancia['prioridades'][i]
+      if not primer:
+        archivo.write(",")
+      archivo.write(f"{a}")
+      primer = False
+    archivo.write("];\n")
+
+    #Bloques necesarios
+    archivo.write("BNecesarios = [")
+    primer = True
+    for i in range(len(instancia['bloques_necesarios'])):
+      s,a = instancia['bloques_necesarios'][i]
+      if not primer:
+        archivo.write(",")
+      archivo.write(f"{a}")
+      primer = False
+    archivo.write("];\n")
+
+    #Bloques disponibles
+    archivo.write("Bloques = array2d(1..7,1..5, [\n")
+    primer = True
+    fila= []
+    for i in range(1, 8):
+      for dia in dias: 
+       fila.append(f"{dia}_{i}")
+    for x in fila:
+      l = x.split("_")
+      n = l[0]
+      if n == "Viernes":
+         archivo.write("  "+ ", ".join([f'"{x}"']) + ",\n" )
+      else:
+        archivo.write("  "+ ", ".join([f'"{x}"']) + "")
+    archivo.write("];\n")
+          
+    #Numero de restricciones
+    archivo.write("NRestricciones = [")
+    primer = True 
+    for i in range(len(instancia['restricciones'])):
+      r = instancia['asignaturas'][i]
+      a = len(instancia['restricciones'][r])
+      if not primer:
+        archivo.write(",")
+      archivo.write(f"{a}")
+      primer = False
+    archivo.write("];\n")
+
+    #Restricciones en si
+    archivo.write("Restricciones = [\n")
+    primer = True
+    for i in range(len(instancia['restricciones'])):
+      r = instancia['asignaturas'][i]
+      for j in range(len(instancia['restricciones'][r])):
+        s,a = instancia['restricciones'][r][j]
+        if not primer:
+          archivo.write(",")
+        archivo.write(f"{s}_{a}")
+        primer = False
+      archivo.write("\n")  
+    archivo.write("];\n")
+
+    #Asignaciones
+    archivo.write("Asignaciones = [") 
+    primer = True
+    for i in range(len(instancia['asignaciones'])):
+      r = instancia['asignaturas'][i]
+      if len(instancia['asignaciones'][r]) > 1:
+        s,a,b = instancia['asignaciones'][r]
+        if not primer:
+          archivo.write(",")
+        archivo.write(f"{s}_{a},")
+        archivo.write(f"{s}_{b}")
+      else:
+        s,a = instancia['asignaciones'][r][0]
+        if not primer:
+          archivo.write(",")
+        archivo.write(f"{s}_{a}")
+      primer = False
+      archivo.write("\n")
+    archivo.write("];\n")
+    
+                  
+    
+
+    
+
+
+
+
+
+instancia = generador(10,5)
+print("SALIDA DE PRUEBA")
+print(instancia)
+prueba = archivo(instancia,"prueba.dzn")

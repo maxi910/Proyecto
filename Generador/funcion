@@ -1,0 +1,158 @@
+def generador(asignaturas, salas): ##Recibe el numero de asignaturas y salas para generar la instancia
+  
+  #Identificar cada asignatura con un número
+  Asignaturas = []
+  for i in range(asignaturas):
+    Asignaturas.append(f"Ramo_{i+1}") #Arreglo de strings de la forma Ramo_indice
+  #Ahora hay que separar entre ramos indispensables y los que se evaluarán 
+  #Por cada 5 ramos hay 1 indispensable, se asume que siempre se entregaran almenos 5 asignaturas. Esto lo haremos separando dos listas
+  print(Asignaturas)
+  
+  CantAlumnos = []
+  for i in range(asignaturas):
+    CantAlumnos.append((Asignaturas[i],random.randint(40,80)))
+  print("ALUMNOS POR RAMO")
+  print(CantAlumnos)
+  
+  Indispensables = random.sample(Asignaturas, asignaturas//5) #Genera una lista con los ramos indispensables, tomando de forma aleatoria "asignaturas//5" de la cantidad de ramos del total
+  print("RAMOS INDISPENSABLES")
+  print(Indispensables)
+  NIndipensables = []
+  for i in range(len(Asignaturas)):
+    if Asignaturas[i] not in Indispensables:
+      NIndipensables.append(Asignaturas[i])
+  print("RAMOS EN EVALUACIÓN")
+  print(NIndipensables)
+  #Hasta este punto se tienen divididos en ramos indispensables y ramos no indispensables xd
+  #Ahora hay que asignarles prioridad, esto se puede hacer con un diccionario para guardar el nombre de la asignatura y la prioridad asignada.
+  
+  #Generamos una lista para identificar las salas
+  Salas = []
+  for j in range(salas):
+    Salas.append(f"Sala_{j+1}")
+
+  CantAlumnos2 = []
+  for j in range(len(Salas)):
+    CantAlumnos2.append((Salas[j],random.randint(45,80)))
+
+  print("CAPACIDAD DE LAS SALAS")
+  print(CantAlumnos2)
+  #Generamos un diccionaro para designar las prioridades
+  Prioridades = {}
+  for ramo in Indispensables:
+    Prioridades[ramo] = random.randint(6,10)
+  for ramo in NIndipensables:
+    Prioridades[ramo] = random.randint(1,5)
+
+  print("PRIORIDADES")
+  print(Prioridades)
+  #Hasta este punto se tienen los ramos indispensables y no indispensables con prioridad en un diccionario
+  ##PRIMERA PARTE COMPLETA
+
+  #Para la segunda parte necesitamos trabajar las restricciones de los profesores y demás
+  #Tomaremos todos los ramos, y les asignaremos un par (bloque,dia) para simbolizar cuales tienen restricciones (Diccionaro donde cada clave tiene asignado una lista de tuplas (bloque,dia))
+  
+
+  bdia = 7
+  dias = ["Lunes","Martes","Miercoles","Jueves","Viernes"]
+  Bloques = []
+  for dia in dias:
+    for i in range(bdia):
+      Bloques.append((dia,i+1))
+  print("LISTA DE DIAS/BLOQUES")
+  print(Bloques)
+
+  #Generamos un diccionario con las restricciones
+  restricciones = {}
+  for ramo in Asignaturas:
+    restricciones[ramo] = random.sample(Bloques, random.randint(7,21)) #Sacamos una lista de entre 7 a 21 elementos al azar de la lista de tuplas "Bloques"
+  print("RESTRICCIONES")
+  print(restricciones)
+
+  #Ya para este punto tenemos las restricciones de bloques para todas las asignaturas
+  #Ahora hay que ver que pasa si hay asignaturas que requieran 1 o 2 bloques, debemos hacer las distinciones, puesto que en el 2do caso hay que tener cuidado con la asignacion de salas
+  #De nuevo, podriamos generar un diccionario donde la clave sea la asignatura y el valor sea 1 o 2
+  #Por restriccion extra del grupo, necesitamos que el 65% de asignaturas tengan un bloque de clases, y el otro 35% tenga 2 bloques
+
+  BNecesarios = {}
+  N1bloque = int(0.65*asignaturas)
+  N2bloques = asignaturas - N1bloque
+  Ramos1bloque = random.sample(Asignaturas,N1bloque)
+  Ramos2bloques = []
+  for ramos in Asignaturas:
+    if ramos not in Ramos1bloque:
+      Ramos2bloques.append(ramos)
+
+  for ramos in Ramos1bloque:
+    BNecesarios[ramos] = 1
+  for ramos in Ramos2bloques:
+    BNecesarios[ramos] = 2
+
+  print("BLOQUES NECESARIOS")
+  print(BNecesarios)
+
+  #Por ultimo, almenos para este caso, generamos un ultimo diccionario para distinguir inmediatamente las asignaturas a las que se le deba asignar bloques consecutivos
+  
+  #CORRECCION, LAS ASIGNACIONES PODRIAN ESTAR TOMANDO BLOQUES RESTRINGIDOS PORQUE EL RANDOM SE ESTÁ HACIENDO PARA TODOS SIN IMPORTAR EL BLOQUE Y DIA
+  #UNA FORMA DE ARREGLARLO SERIA GENERAR UN DICCIONARIO CON LOS BLOQUES PERMITIDOS PARA CADA RAMO
+  Permitidos = {}
+  for ramo in Asignaturas:
+    Permitidos[ramo]=[]
+    for j in range(len(Bloques)):
+      if Bloques[j] not in restricciones[ramo]:
+        Permitidos[ramo].append(Bloques[j])      
+  print("BLOQUES PERMITIDOS")
+  print(Permitidos)
+
+  
+  asignaciones = {}
+  for ramos in Asignaturas:
+    if BNecesarios[ramos] == 2:
+      b = 7
+      while b == 7:
+        d,b = random.choice(Permitidos[ramos])
+      asignaciones[ramos]=[d,b,b+1]
+    else:
+      asignaciones[ramos]=[random.choice(Permitidos[ramos])]
+  print("ASIGNACIONES")
+  print(asignaciones)
+
+
+  #Por ultimo, para pasar los datos al minizinc, queremos que todo esté ordenado, en este caso de la asignatura 1 hasta la última de manera ascendente
+  #Para eso, usamos la función sorted que ordena una lista sin cambiarla. key=lambda x; nos define como queremos ordenar la lista 
+  #lambda viene en la sintaxis de python y permite definir funciones anonimas, en este caso, la función lambda x:  nos permite ordenar la listas de manera ascendente
+  #x toma por ejemplo  el string "Ramo_1", lo separa con .split en el guión bajo y lo convierte en una lista, en este caso ["Ramo", "1"]. por ultimo [1] accede al string "1". Por ultimo usamos int() para convertir el 1 en un entero
+
+  RIndispensables = sorted(Indispensables, key=lambda x: int(x.split("_")[1]))
+
+  RPrioridades = []
+  for ramo in Asignaturas:
+    RPrioridades.append((ramo,Prioridades[ramo]))
+    
+  RBNecesarios = []
+  for ramo in Asignaturas:
+    RBNecesarios.append((ramo,BNecesarios[ramo]))
+
+  Rrestricciones = {}
+  for ramo in Asignaturas:
+    Rrestricciones[ramo] = restricciones[ramo]
+    
+  Rasignaciones = {}  
+  for ramo in Asignaturas:
+    Rasignaciones[ramo] = asignaciones[ramo]
+
+  #Lo que se hizo en estas últimas líneas fue ordenar todos los diccionarios y listas de salid, creando unos nuevos y haciendo la asignaciones en orden ascendente en este caso.
+  #Esto se quiere así para poder entregar todo ordenado al minizinc sin necesidad de hacer distinciones en el solver
+  
+
+  return {
+    "asignaturas": Asignaturas, #lista
+    "indispensables": RIndispensables, #Lista
+    "diaybloque": Bloques, #lista de tuplas
+    "alumnosporramo": CantAlumnos, #lista de tuplas
+    "alumnosporsala": CantAlumnos2, #lista de tuplas
+    "prioridades": RPrioridades, #lista de tuplas
+    "bloques_necesarios": RBNecesarios, #lista de tuplas
+    "restricciones": Rrestricciones, #diccionario con listas
+    "asignaciones": Rasignaciones #diccionario con listas
+}
