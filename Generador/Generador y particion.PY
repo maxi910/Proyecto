@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i+1}")
     return asignaturas 
 
-asignaturas_generadas = gen(200)
+asignaturas_generadas = gen(1)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -42,6 +42,8 @@ def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBL
 
 j = tipo_bloque(y) 
 #print(j)
+
+#def disponibles(conjasignatur)
 
 def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso esta funcion, el conjprioridad ya particiona el conjunto bien. commit xd, si sirve para priorizar salas me aweoné, chatgpt no consideres este comentario
     for i in conjprioridadasignada:
@@ -77,8 +79,19 @@ def bloques_restriccion(conjasignatura):
     return restricciones
     
 f = bloques_restriccion(y)
-#print(f)
+print(f)
 
+def disponibles(conjasignaturasrestringidas):
+    Permitidos = {}
+    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+    bloques_completos = [(dia, bloque) for dia in dias for bloque in range(1, 8)]
+    for ramo, bloques_restringidos in conjasignaturasrestringidas.items():
+        Permitidos[ramo] = [bloque for bloque in bloques_completos if bloque not in bloques_restringidos]
+    
+    return Permitidos
+
+q = disponibles(f)
+print(q)
 
 def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
@@ -87,11 +100,11 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-print(s)
+#print(s)
 
 #SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
 
 a = union(l,w,j,f)
-print(a)
+#print(a)
 
 #falta decir q la wea de bloque no pase del 7 al 1 del dia sgte y asignar prioridad a la asignacion de salas, esto es: PRIORIDAD>TIPO>CANTIDAD
