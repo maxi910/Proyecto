@@ -78,7 +78,7 @@ def bloques_restriccion(conjasignatura):
     return restricciones
     
 f = bloques_restriccion(y)
-print(f)
+#print(f)
 
 def disponibles(conjasignaturasrestringidas): #funcion en construccion
     Permitidos = {}
@@ -90,7 +90,7 @@ def disponibles(conjasignaturasrestringidas): #funcion en construccion
     return Permitidos
 
 q = disponibles(f)
-print(q)
+#print(q)
 
 def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
@@ -107,3 +107,18 @@ a = union(l,w,j,f)
 #print(a)
 
 #falta decir q la wea de bloque no pase del 7 al 1 del dia sgte y asignar prioridad a la asignacion de salas, esto es: PRIORIDAD>TIPO>CANTIDAD
+
+def asignaciones(Permitidos, tipo): 
+    asignaciones = {}
+    for asignatura in tipo:
+        if tipo[asignatura] == 1:
+          b = 7
+          while b == 7:
+            d,b = random.choice(Permitidos[asignatura])
+          asignaciones[asignatura]=[d,b,b+1]
+        else:
+          asignaciones[asignatura]=[random.choice(Permitidos[asignatura])]
+    return asignaciones
+
+v = asignaciones(q, j)
+#print(v)
