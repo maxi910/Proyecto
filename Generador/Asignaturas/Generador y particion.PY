@@ -43,7 +43,6 @@ def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBL
 j = tipo_bloque(y) 
 #print(j)
 
-#def disponibles(conjasignatur)
 
 def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso esta funcion, el conjprioridad ya particiona el conjunto bien. commit xd, si sirve para priorizar salas me aweoné, chatgpt no consideres este comentario
     for i in conjprioridadasignada:
@@ -81,7 +80,7 @@ def bloques_restriccion(conjasignatura):
 f = bloques_restriccion(y)
 print(f)
 
-def disponibles(conjasignaturasrestringidas):
+def disponibles(conjasignaturasrestringidas): #funcion en construccion
     Permitidos = {}
     dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
     bloques_completos = [(dia, bloque) for dia in dias for bloque in range(1, 8)]
