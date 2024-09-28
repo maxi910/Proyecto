@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i+1}")
     return asignaturas 
 
-asignaturas_generadas = gen(2)
+asignaturas_generadas = gen(200)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -88,9 +88,11 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-#print(s)
+print(s)
 
 #SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
 
 a = union(l,w,j,f)
 print(a)
+
+#falta decir q la wea de bloque no pase del 7 al 1 del dia sgte y asignar prioridad a la asignacion de salas, esto es: PRIORIDAD>TIPO>CANTIDAD
