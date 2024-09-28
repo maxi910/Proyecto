@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i+1}")
     return asignaturas 
 
-asignaturas_generadas = gen(50)
+asignaturas_generadas = gen(2)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -36,7 +36,7 @@ w = cant_alumnos(y)
 def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBLE!!
     doble_simple = {}
     for asignatura in conjasignatura:
-        tipo_i = random.randint(0,1)
+        tipo_i = random.choices([0, 1], weights=[35, 65])[0]
         doble_simple[asignatura] = tipo_i
     return doble_simple
 
@@ -88,4 +88,9 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-print(s)
+#print(s)
+
+#SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
+
+a = union(l,w,j,f)
+print(a)
