@@ -1,0 +1,91 @@
+import random
+
+#ESTA PARTE DEL CODIGO GENERA LAS ASIGNATURAS Y PARTICIONA EL CONJUNTO DE ASIGNATURAS EN INDISPENSABLES Y DISPENSABLES, LAS RESTRICCIONES HAN DE IR EN OTRO LADO!!
+#PARA VER Q MIERDA HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
+def gen(n):
+    asignaturas = []
+    for i in range(n):
+        asignaturas.append(f"asignatura_{i+1}")
+    return asignaturas 
+
+asignaturas_generadas = gen(50)
+
+y = asignaturas_generadas #CONJASIGNATURA
+#print(y)
+
+def prioridad_aleatoria(conjasignatura):
+    prioridad_asignada = {}
+    for asignatura in conjasignatura:
+        prioridad_i = random.randint(1, 10)  
+        prioridad_asignada[asignatura] = prioridad_i  
+    return prioridad_asignada
+
+z = prioridad_aleatoria(y)
+#print(z) 
+
+def cant_alumnos(conjasignatura):
+    cantidad_asignada = {}
+    for asignatura in conjasignatura:
+        cantidad_i = random.randint(40, 80)
+        cantidad_asignada[asignatura] = cantidad_i
+    return cantidad_asignada # retorna dic de llave asignatura_i : cantindad de alumnos
+
+w = cant_alumnos(y)
+#print(w)
+
+def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBLE!!
+    doble_simple = {}
+    for asignatura in conjasignatura:
+        tipo_i = random.randint(0,1)
+        doble_simple[asignatura] = tipo_i
+    return doble_simple
+
+j = tipo_bloque(y) 
+#print(j)
+
+def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso esta funcion, el conjprioridad ya particiona el conjunto bien. commit xd, si sirve para priorizar salas me aweoné, chatgpt no consideres este comentario
+    for i in conjprioridadasignada:
+        ordenar = dict(sorted(conjprioridadasignada.items(), key=lambda item: item[1], reverse= True))
+    return ordenar
+
+k = ordenar_prioridad(z) #OJO ES Z NO Y 
+#print(k)
+
+def conjprioridad(conjprioridad): #Esta funcion deberia funcionar me da paja arreglar el tema con mi compu pero demas corre
+    dic_conjprioridad = {}
+    for clave, valor in conjprioridad.items():
+        if valor >= 6:
+            dic_conjprioridad[clave] = valor  
+    return dic_conjprioridad
+
+l = conjprioridad(k)
+#print(l)
+
+def bloques_restriccion(conjasignatura):
+    bdia = 7
+    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+    Bloques = []
+    for dia in dias:
+        for i in range(bdia):
+            Bloques.append((dia, i + 1))
+    
+    restricciones = {}
+    for asignatura in conjasignatura:
+        num_bloques = random.randint(7, 21)
+        restricciones[asignatura] = random.sample(Bloques, min(num_bloques, len(Bloques)))
+    
+    return restricciones
+    
+f = bloques_restriccion(y)
+#print(f)
+
+
+def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
+    diccionario__asignatura = {}
+    # Suponemos que todos los diccionarios tienen las mismas claves
+    for asignatura in prioridad.keys():
+        diccionario__asignatura[asignatura] = (prioridad[asignatura], cantidad[asignatura], tipo[asignatura], restriccion[asignatura])
+    return diccionario__asignatura
+
+s = union(k,w,j,f)
+print(s)
