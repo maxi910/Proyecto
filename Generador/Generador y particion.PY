@@ -82,7 +82,6 @@ f = bloques_restriccion(y)
 
 def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
-    # Suponemos que todos los diccionarios tienen las mismas claves
     for asignatura in prioridad.keys():
         diccionario__asignatura[asignatura] = (prioridad[asignatura], cantidad[asignatura], tipo[asignatura], restriccion[asignatura])
     return diccionario__asignatura
