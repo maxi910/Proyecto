@@ -1,4 +1,6 @@
 import random
+from Asignaturas import Bloques
+
 
 def gens(s):
     salas = []
@@ -19,3 +21,6 @@ def cant_salas(conjsala):
 
 b = cant_salas(x)
 print(b)
+
+w = cant_alumnos(y)
+print(w)
