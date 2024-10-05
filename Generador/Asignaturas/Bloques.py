@@ -13,14 +13,21 @@ asignaturas_generadas = gen(1)
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
 
-def prioridad_aleatoria(conjasignatura):
+def indispensable(conjasignatura): #RETORNA UNA LISTA DE LARGO len(conjasignatura//5)
+    indispensable = random.sample(conjasignatura, len(conjasignatura)//5)
+    return indispensable 
+t = indispensable(y)
+#print(t)
+
+def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIGNATURAS Y LA DE ASIGNATURAS INDISPENSABLES
     prioridad_asignada = {}
     for asignatura in conjasignatura:
-        prioridad_i = random.randint(1, 10)  
-        prioridad_asignada[asignatura] = prioridad_i  
-    return prioridad_asignada
-
-z = prioridad_aleatoria(y)
+        if asignatura not in indispensable:
+            prioridad_asignada[asignatura]= random.randint(1,5)
+        else:
+            prioridad_asignada[asignatura] = random.randint(6,10)  
+    return prioridad_asignada #RETORNA UN DICCIONARIO
+z = prioridad_aleatoria(y, t)
 #print(z) 
 
 def cant_alumnos(conjasignatura):
