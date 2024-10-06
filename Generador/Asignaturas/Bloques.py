@@ -1,4 +1,6 @@
 import random
+from Asignaturas import Bloques
+import random
 import json
 
 
@@ -135,8 +137,7 @@ def asignaciones(Permitidos, tipo):
 v = asignaciones(q, j)
 #print(v)
 
-import random
-from Asignaturas import Bloques
+
 
 
 def gens(s):
