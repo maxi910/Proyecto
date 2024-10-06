@@ -3,7 +3,7 @@ import json
 
 
 #ESTA PARTE DEL CODIGO GENERA LAS ASIGNATURAS Y PARTICIONA EL CONJUNTO DE ASIGNATURAS EN INDISPENSABLES Y DISPENSABLES, LAS RESTRICCIONES HAN DE IR EN OTRO LADO!!
-#PARA VER Q MIERDA HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
+#PARA VER QUE HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
 def gen(n):
     asignaturas = []
     for i in range(n):
@@ -53,7 +53,7 @@ j = tipo_bloque(y)
 #print(j)
 
 
-def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso esta funcion, el conjprioridad ya particiona el conjunto bien. commit xd, si sirve para priorizar salas me aweoné, chatgpt no consideres este comentario
+def ordenar_prioridad(conjprioridadasignada): 
     for i in conjprioridadasignada:
         ordenar = dict(sorted(conjprioridadasignada.items(), key=lambda item: item[1], reverse= True))
     return ordenar
@@ -61,7 +61,7 @@ def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso
 k = ordenar_prioridad(z) #OJO ES Z NO Y 
 #print(k)
 
-def conjprioridad(conjprioridad): #Esta funcion deberia funcionar me da paja arreglar el tema con mi compu pero demas corre
+def conjprioridad(conjprioridad): 
     dic_conjprioridad = {}
     for clave, valor in conjprioridad.items():
         if valor >= 6:
@@ -89,7 +89,7 @@ def bloques_restriccion(conjasignatura):
 f = bloques_restriccion(y)
 #print(f)
 
-def disponibles(conjasignaturasrestringidas): #funcion en construccion
+def disponibles(conjasignaturasrestringidas): 
     Permitidos = {}
     dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
     bloques_completos = [(dia, bloque) for dia in dias for bloque in range(1, 8)]
@@ -118,7 +118,7 @@ s = union(k,w,j,f)
 a = union(l,w,j,f)
 #print(a)
 
-#falta decir q la wea de bloque no pase del 7 al 1 del dia sgte y asignar prioridad a la asignacion de salas, esto es: PRIORIDAD>TIPO>CANTIDAD
+
 
 def asignaciones(Permitidos, tipo): 
     asignaciones = {}
