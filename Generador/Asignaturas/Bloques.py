@@ -2,6 +2,7 @@ from Asignaturas import Bloques
 import random
 import json
 
+#NOTA: El código que tenemos como grupo esta en github, en este archivo se trata de colocar todo el código para que sea más fácil de subir. En resumen, el código está modularizado para tener mayor manejo de errores y eficiencia en tiempos de ejecución.
 
 #ESTA PARTE DEL CODIGO GENERA LAS ASIGNATURAS Y PARTICIONA EL CONJUNTO DE ASIGNATURAS EN INDISPENSABLES Y DISPENSABLES, LAS RESTRICCIONES HAN DE IR EN OTRO LADO!!
 #PARA VER QUE HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
