@@ -1,4 +1,3 @@
-import random
 from Asignaturas import Bloques
 import random
 import json
