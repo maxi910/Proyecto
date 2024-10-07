@@ -103,14 +103,15 @@ def disponibles(conjasignaturasrestringidas):
 q = disponibles(f)
 #print(q)
 
-def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
+def union(prioridad,cantidad,tipo,restriccion, filename="archivo.json"): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
     for asignatura in prioridad.keys():
         diccionario__asignatura[asignatura] = (prioridad[asignatura], cantidad[asignatura], tipo[asignatura], restriccion[asignatura])
-        
-        diccionario_json = json.dumps(diccionario_asignatura, indent=4)
-        
-    return diccionario_json
+
+    #with open(filename, 'w') as json_file: #IDEA A FUTURO, SACARLE EL # A ESTA LINEA Y SACAR EL RETURN DEBERIA PODER ESCRBIR UN ARCHIVO .JSON PARA POSTERIORMENTE MANIPULARLO Y CAMBIAR A MINIZINC.
+        #json.dump(diccionario_asignatura, json_file, indent=4)
+    return diccionario__asignatura
+
 
 s = union(k,w,j,f)
 #print(s)
