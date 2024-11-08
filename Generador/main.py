@@ -6,8 +6,8 @@ from DZN.generar_dzn import generar_dzn
 
  
 def main():
-    num_asignaturas = 10
-    num_salas = gens(5)
+    num_asignaturas = 40
+    num_salas = gens(3)
 
     asignaturas = gen(num_asignaturas)
 
@@ -16,7 +16,7 @@ def main():
     cantidadalumnos = cant_alumnos(asignaturas)
     capacidadsala = capacidad_salas(num_salas)
     tipobloque = tipo_bloque(asignaturas)
-    restriccionesbloques = bloques_restriccion(asignaturas)
+    restriccionesbloques = bloques_restriccion(asignaturas, tipobloque)
     diccionario = union(prioridad,cantidadalumnos,tipobloque,restriccionesbloques)
 
     generar_dzn(diccionario, capacidadsala, filename="instancia.dzn")

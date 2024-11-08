@@ -73,22 +73,30 @@ def conjprioridad(conjprioridad): #Esta funcion deberia funcionar me da paja arr
 l = conjprioridad(k)
 #print(l)
 
-def bloques_restriccion(conjasignatura):
+def bloques_restriccion(conjasignatura, tipo):
     bdia = 7
     dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
     Bloques = []
+
     for dia in dias:
         for i in range(bdia):
             Bloques.append((dia, i + 1))
     
     restricciones = {}
     for asignatura in conjasignatura:
+        # Si el bloque es doble, excluir el bloque 7 de los bloques posibles
+        if tipo[asignatura] == 1:
+            bloques_disponibles = [bloque for bloque in Bloques if bloque[1] != 7]
+        else:
+            bloques_disponibles = Bloques
+        
+        # Selecciona un número aleatorio de bloques restringidos
         num_bloques = random.randint(7, 21)
-        restricciones[asignatura] = random.sample(Bloques, min(num_bloques, len(Bloques)))
+        restricciones[asignatura] = random.sample(bloques_disponibles, min(num_bloques, len(bloques_disponibles)))
     
     return restricciones
-    
-f = bloques_restriccion(y)
+
+f = bloques_restriccion(y, j)
 #print(f)
 
 def disponibles(conjasignaturasrestringidas): #funcion en construccion
