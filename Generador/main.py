@@ -7,12 +7,10 @@ from DZN.generar_dzn import generar_dzn
  
 def main():
     num_asignaturas = 10
-    num_salas = 5
+    num_salas = gens(5)
 
     asignaturas = gen(num_asignaturas)
-    salas = [f"sala_{i+1}" for i in range(num_salas)]
 
-    # Generar datos asociados a las asignaturas
     indispensables = indispensable(asignaturas)
     prioridad = prioridad_aleatoria(asignaturas, indispensables)
     cantidadalumnos = cant_alumnos(asignaturas)
