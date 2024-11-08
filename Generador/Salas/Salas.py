@@ -1,5 +1,4 @@
 import random
-from ..Asignaturas.Bloques import cant_alumnos, gen
 
 def gens(s):
     salas = []
@@ -18,6 +17,8 @@ def capacidad_salas(conjsala):
         cantidad_asignada[sala] = cantidad_i
     return cantidad_asignada
 
-b = cant_salas(x)
-#print(b)
+a = gens(5)
+b = capacidad_salas(a)
+
+print(b)
 

@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i}")
     return asignaturas 
 
-asignaturas_generadas = gen(10)
+asignaturas_generadas = gen(1)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -111,6 +111,8 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
 
 s = union(k,w,j,f)
 print(s)
+#si tipo[asignatura]==1:
+    #no puede tomar el bloque 7
 
 #SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
 
