@@ -1,27 +1,28 @@
 # main.py
 import random
-from Generador.Asignaturas.Bloques import cant_alumnos, gen  # Ajusta las importaciones según tu estructura
-from Generador.DZN.generar_dzn import generar_dzn
+from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen
+from Salas.Salas import capacidad_salas, gens
+from DZN.generar_dzn import generar_dzn
+
  
 def main():
-    # Configuración inicial
     num_asignaturas = 10
     num_salas = 5
 
     # Generación de asignaturas y salas
-    asignaturas = generar_asignaturas(num_asignaturas)
+    asignaturas = gen(num_asignaturas)
     salas = [f"sala_{i+1}" for i in range(num_salas)]
 
     # Generar datos asociados a las asignaturas
-    indispensables = generar_indispensables(asignaturas)
+    indispensables = indispensable(asignaturas)
     prioridad = prioridad_aleatoria(asignaturas, indispensables)
-    cantidad_alumnos = generar_cantidad_alumnos(asignaturas)
-    capacidad_salas = generar_capacidad_salas(num_salas)
-    tipo_bloque = generar_tipo_bloque(asignaturas)
-    restricciones_bloques = bloques_restriccion(asignaturas)
+    cantidadalumnos = cant_alumnos(asignaturas)
+    capacidadsala = capacidad_salas(num_salas)
+    tipobloque = tipo_bloque(asignaturas)
+    restriccionesbloques = bloques_restriccion(asignaturas)
 
     # Crear el archivo .dzn con todos los datos generados
-    generar_dzn(asignaturas, salas, cantidad_alumnos, capacidad_salas, tipo_bloque, prioridad, restricciones_bloques)
+    generar_dzn(asignaturas, salas, cantidadalumnos, capacidadsala, tipobloque, prioridad, restriccionesbloques)
 
     print("Archivo instancia.dzn generado exitosamente.")
 

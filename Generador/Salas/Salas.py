@@ -11,7 +11,7 @@ salas_generadas = gens(4)
 x = salas_generadas #CONJSALAS
 #print(x)
 
-def cant_salas(conjsala):
+def capacidad_salas(conjsala):
     cantidad_asignada = {}
     for sala in conjsala:
         cantidad_i = random.randint(45, 80)
@@ -21,9 +21,3 @@ def cant_salas(conjsala):
 b = cant_salas(x)
 #print(b)
 
-asignaturas_generadas = gen(45)
-
-y = asignaturas_generadas
-#print(y)
-w = cant_alumnos(y)
-#print(w)
