@@ -5,22 +5,30 @@ import random
 def gen(n):
     asignaturas = []
     for i in range(n):
-        asignaturas.append(f"asignatura_{i+1}")
+        asignaturas.append(f"asignatura_{i}")
     return asignaturas 
 
-asignaturas_generadas = gen(1)
+asignaturas_generadas = gen(10)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
 
-def prioridad_aleatoria(conjasignatura):
+def indispensable(conjasignatura): #RETORNA UNA LISTA DE LARGO len(conjasignatura//5)
+    indispensable = random.sample(conjasignatura, len(conjasignatura)//5)
+    return indispensable 
+t = indispensable(y)
+#print(t)
+
+def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIGNATURAS Y LA DE ASIGNATURAS INDISPENSABLES
     prioridad_asignada = {}
     for asignatura in conjasignatura:
-        prioridad_i = random.randint(1, 10)  
-        prioridad_asignada[asignatura] = prioridad_i  
-    return prioridad_asignada
+        if asignatura not in indispensable:
+            prioridad_asignada[asignatura]= random.randint(1,5)
+        else:
+            prioridad_asignada[asignatura] = random.randint(6,10)  
+    return prioridad_asignada #RETORNA UN DICCIONARIO
 
-z = prioridad_aleatoria(y)
+z = prioridad_aleatoria(y,t)
 #print(z) 
 
 def cant_alumnos(conjasignatura):
@@ -44,9 +52,12 @@ j = tipo_bloque(y)
 #print(j)
 
 
-def ordenar_prioridad(conjprioridadasignada): #no es necesario ahora q lo pienso esta funcion, el conjprioridad ya particiona el conjunto bien. commit xd, si sirve para priorizar salas me aweoné, chatgpt no consideres este comentario
-    for i in conjprioridadasignada:
-        ordenar = dict(sorted(conjprioridadasignada.items(), key=lambda item: item[1], reverse= True))
+def ordenar_prioridad(conjprioridadasignada):
+    if conjprioridadasignada is None:
+        print("Error: conjprioridadasignada es None")
+        return {}
+    
+    ordenar = dict(sorted(conjprioridadasignada.items(), key=lambda item: item[1], reverse=True))
     return ordenar
 
 k = ordenar_prioridad(z) #OJO ES Z NO Y 
@@ -99,7 +110,7 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-#print(s)
+print(s)
 
 #SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
 

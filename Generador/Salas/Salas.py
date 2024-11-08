@@ -1,6 +1,5 @@
 import random
-from Asignaturas import Bloques
-
+from ..Asignaturas.Bloques import cant_alumnos, gen
 
 def gens(s):
     salas = []
@@ -8,9 +7,9 @@ def gens(s):
         salas.append(f"sala_{i+1}")
     return salas
 
-salas_generadas = gens(5)
+salas_generadas = gens(4)
 x = salas_generadas #CONJSALAS
-print(x)
+#print(x)
 
 def cant_salas(conjsala):
     cantidad_asignada = {}
@@ -20,7 +19,11 @@ def cant_salas(conjsala):
     return cantidad_asignada
 
 b = cant_salas(x)
-print(b)
+#print(b)
 
+asignaturas_generadas = gen(45)
+
+y = asignaturas_generadas
+#print(y)
 w = cant_alumnos(y)
-print(w)
+#print(w)
