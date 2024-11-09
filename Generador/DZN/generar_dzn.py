@@ -13,7 +13,7 @@ def generar_dzn(diccionario_asignatura, salas, filename="instancia.dzn"):
 
         f.write(f"prioridad = [{', '.join(str(diccionario_asignatura[asignatura][0]) for asignatura in asignaturas)}];\n")
 
-        f.write(f"cantidad de alumnos = [{', '.join(str(diccionario_asignatura[asignatura][1]) for asignatura in asignaturas)}];\n")
+        f.write(f"cantidad_de_alumnos = [{', '.join(str(diccionario_asignatura[asignatura][1]) for asignatura in asignaturas)}];\n")
 
         f.write(f"capacidad = [{', '.join(str(salas[sala]) for sala in nombres_salas)}];\n")
         
@@ -23,7 +23,7 @@ def generar_dzn(diccionario_asignatura, salas, filename="instancia.dzn"):
 
         f.write("bloques_restriccion = [|\n")
         for asignatura in asignaturas:
-            restricciones = ", ".join(f"({dia}, {bloque})" for dia, bloque in diccionario_asignatura[asignatura][3])
+            restricciones = ", ".join(f"(\"{dia}\", {bloque})" for dia, bloque in diccionario_asignatura[asignatura][3])
             f.write(f" [{restricciones}],\n")
         f.write("|];\n")
 
