@@ -23,7 +23,7 @@ def generar_dzn(diccionario_asignatura, salas, filename="instancia.dzn"):
 
         f.write("bloques_restriccion = [|\n")
         for asignatura in asignaturas:
-            restricciones = ", ".join(f"(\"{dia}\", {bloque})" for dia, bloque in diccionario_asignatura[asignatura][3])
+            restricciones = ", ".join(f"({dia}, {bloque})" for dia, bloque in diccionario_asignatura[asignatura][3])
             f.write(f" [{restricciones}],\n")
         f.write("|];\n")
 

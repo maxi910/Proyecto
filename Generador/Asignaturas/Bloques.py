@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i}")
     return asignaturas 
 
-asignaturas_generadas = gen(300)
+asignaturas_generadas = gen(40)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -29,7 +29,7 @@ def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIG
     return prioridad_asignada #RETORNA UN DICCIONARIO
 
 z = prioridad_aleatoria(y,t)
-print(z) 
+#print(z) 
 
 def cant_alumnos(conjasignatura):
     cantidad_asignada = {}
@@ -74,7 +74,7 @@ l = conjprioridad(k)
 
 def bloques_restriccion(conjasignatura, tipo):
     bdia = 7
-    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+    dias = [1, 2, 3, 4, 5]
     Bloques = []
 
     for dia in dias:
@@ -98,7 +98,7 @@ f = bloques_restriccion(y, j)
 
 def disponibles(conjasignaturasrestringidas): #funcion en construccion
     Permitidos = {}
-    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+    dias = [1, 2, 3, 4, 5]
     bloques_completos = [(dia, bloque) for dia in dias for bloque in range(1, 8)]
     for ramo, bloques_restringidos in conjasignaturasrestringidas.items():
         Permitidos[ramo] = [bloque for bloque in bloques_completos if bloque not in bloques_restringidos]
@@ -106,7 +106,11 @@ def disponibles(conjasignaturasrestringidas): #funcion en construccion
     return Permitidos
 
 q = disponibles(f)
-#print(q)
+print(q)
+
+def error_bloque_doble(q):
+    return 0
+    
 
 def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
@@ -115,7 +119,7 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-#print(s)
+print(s)
 #si tipo[asignatura]==1:
     #no puede tomar el bloque 7
 
