@@ -8,7 +8,7 @@ def gen(n):
         asignaturas.append(f"asignatura_{i}")
     return asignaturas 
 
-asignaturas_generadas = gen(1)
+asignaturas_generadas = gen(300)
 
 y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
@@ -17,7 +17,7 @@ def indispensable(conjasignatura): #RETORNA UNA LISTA DE LARGO len(conjasignatur
     indispensable = random.sample(conjasignatura, len(conjasignatura)//5)
     return indispensable 
 t = indispensable(y)
-#print(t)
+print(t)
 
 def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIGNATURAS Y LA DE ASIGNATURAS INDISPENSABLES
     prioridad_asignada = {}
@@ -29,7 +29,7 @@ def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIG
     return prioridad_asignada #RETORNA UN DICCIONARIO
 
 z = prioridad_aleatoria(y,t)
-#print(z) 
+print(z) 
 
 def cant_alumnos(conjasignatura):
     cantidad_asignada = {}
@@ -50,7 +50,6 @@ def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBL
 
 j = tipo_bloque(y) 
 #print(j)
-
 
 def ordenar_prioridad(conjprioridadasignada):
     if conjprioridadasignada is None:
@@ -118,7 +117,7 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-print(s)
+#print(s)
 #si tipo[asignatura]==1:
     #no puede tomar el bloque 7
 
