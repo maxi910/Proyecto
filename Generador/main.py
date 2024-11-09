@@ -6,8 +6,8 @@ from DZN.generar_dzn import generar_dzn
 
  
 def main():
-    num_asignaturas = 40
-    num_salas = gens(3)
+    num_asignaturas = 300
+    num_salas = gens(18)
 
     asignaturas = gen(num_asignaturas)
 

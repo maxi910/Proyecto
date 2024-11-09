@@ -75,7 +75,7 @@ l = conjprioridad(k)
 
 def bloques_restriccion(conjasignatura, tipo):
     bdia = 7
-    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
     Bloques = []
 
     for dia in dias:
