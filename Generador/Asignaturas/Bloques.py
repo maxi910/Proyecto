@@ -83,13 +83,11 @@ def bloques_restriccion(conjasignatura, tipo):
     
     restricciones = {}
     for asignatura in conjasignatura:
-        # Si el bloque es doble, excluir el bloque 7 de los bloques posibles
         if tipo[asignatura] == 1:
             bloques_disponibles = [bloque for bloque in Bloques if bloque[1] != 7]
         else:
             bloques_disponibles = Bloques
-        
-        # Selecciona un número aleatorio de bloques restringidos
+
         num_bloques = random.randint(7, 21)
         restricciones[asignatura] = random.sample(bloques_disponibles, min(num_bloques, len(bloques_disponibles)))
     
