@@ -2,7 +2,6 @@ import random
 
 
 def generar_dzn(diccionario_asignatura, salas, filename="instancia.dzn"):
-    # Obtener los nombres de las asignaturas y de las salas
     asignaturas = list(diccionario_asignatura.keys())
     nombres_salas = list(salas.keys())
 
@@ -23,11 +22,9 @@ def generar_dzn(diccionario_asignatura, salas, filename="instancia.dzn"):
 
         f.write("bloques_restriccion = [|\n")
         for asignatura in asignaturas:
-            restricciones = ", ".join(f"({dia}, {bloque})" for dia, bloque in diccionario_asignatura[asignatura][3])
-            f.write(f" [{restricciones}],\n")
-        f.write("|];\n")
-
-    print(f"Archivo {filename} generado exitosamente.")
+            restricciones = ", ".join(str(bloque) for bloque in diccionario_asignatura[asignatura][3])
+            f.write(f" |{restricciones}|,\n")
+        f.write("|] |\n")
 
 
 

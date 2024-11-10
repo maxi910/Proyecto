@@ -17,8 +17,8 @@ def capacidad_salas(conjsala):
         cantidad_asignada[sala] = cantidad_i
     return cantidad_asignada
 
-a = gens(5)
-b = capacidad_salas(a)
+#a = gens(5)
+#b = capacidad_salas(a)
 
-print(b)
+#print(b)
 

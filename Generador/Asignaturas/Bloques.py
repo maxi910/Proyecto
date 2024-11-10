@@ -17,7 +17,7 @@ def indispensable(conjasignatura): #RETORNA UNA LISTA DE LARGO len(conjasignatur
     indispensable = random.sample(conjasignatura, len(conjasignatura)//5)
     return indispensable 
 t = indispensable(y)
-print(t)
+#print(t)
 
 def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIGNATURAS Y LA DE ASIGNATURAS INDISPENSABLES
     prioridad_asignada = {}
@@ -73,24 +73,20 @@ l = conjprioridad(k)
 #print(l)
 
 def bloques_restriccion(conjasignatura, tipo):
-    bdia = 7
-    dias = [1, 2, 3, 4, 5]
-    Bloques = []
+    dias = list(range(1, 36))  
+    restricciones = {} 
 
-    for dia in dias:
-        for i in range(bdia):
-            Bloques.append((dia, i + 1))
-    
-    restricciones = {}
     for asignatura in conjasignatura:
         if tipo[asignatura] == 1:
-            bloques_disponibles = [bloque for bloque in Bloques if bloque[1] != 7]
+            dias_disponibles = [dia for dia in dias if dia % 7 != 0]
         else:
-            bloques_disponibles = Bloques
 
-        num_bloques = random.randint(7, 21)
-        restricciones[asignatura] = random.sample(bloques_disponibles, min(num_bloques, len(bloques_disponibles)))
-    
+            dias_disponibles = dias
+
+        num_dias = random.randint(7, 21)
+
+        restricciones[asignatura] = random.sample(dias_disponibles, min(num_dias, len(dias_disponibles)))
+
     return restricciones
 
 f = bloques_restriccion(y, j)
@@ -106,7 +102,7 @@ def disponibles(conjasignaturasrestringidas): #funcion en construccion
     return Permitidos
 
 q = disponibles(f)
-print(q)
+#print(q)
 
 def error_bloque_doble(q):
     return 0
@@ -119,7 +115,7 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
     return diccionario__asignatura
 
 s = union(k,w,j,f)
-print(s)
+#print(s)
 #si tipo[asignatura]==1:
     #no puede tomar el bloque 7
 
