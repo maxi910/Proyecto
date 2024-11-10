@@ -1,8 +1,7 @@
-# main.py
 import random
-from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen, union
+from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen, union, matriz
 from Salas.Salas import capacidad_salas, gens
-from DZN.generar_dzn import generar_dzn
+from DZN.generar_dzn import matrizdzn 
 
  
 def main():
@@ -18,8 +17,9 @@ def main():
     tipobloque = tipo_bloque(asignaturas)
     restriccionesbloques = bloques_restriccion(asignaturas, tipobloque)
     diccionario = union(prioridad,cantidadalumnos,tipobloque,restriccionesbloques)
+    matrix = matriz(diccionario)
+    matrizdzn(matrix, filename="matrix_data.dzn")
 
-    generar_dzn(diccionario, capacidadsala, filename="instancia.dzn")
 
     print("Archivo instancia.dzn generado exitosamente.")
 

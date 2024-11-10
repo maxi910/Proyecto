@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 #ESTA PARTE DEL CODIGO GENERA LAS ASIGNATURAS Y PARTICIONA EL CONJUNTO DE ASIGNATURAS EN INDISPENSABLES Y DISPENSABLES, LAS RESTRICCIONES HAN DE IR EN OTRO LADO!!
 #PARA VER Q MIERDA HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
@@ -140,3 +141,19 @@ def asignaciones(Permitidos, tipo):
 
 v = asignaciones(q, j)
 #print(v)
+
+def matriz(diccionario):
+    num_asignaturas = len(diccionario)
+    matriz = np.zeros((num_asignaturas, 35), dtype=int) 
+    for i, (key, asignatura_data) in enumerate(diccionario.items()):
+        matriz[i, 0] = asignatura_data[0]  
+        matriz[i, 1] = asignatura_data[1] 
+        matriz[i, 2] = asignatura_data[2] 
+        restricciones = asignatura_data[3]
+        limite_restricciones = min(len(restricciones), 32)
+        matriz[i, 3:3 + limite_restricciones] = restricciones[:limite_restricciones]
+
+    return matriz
+
+qq = matriz(s)
+#print(qq)
