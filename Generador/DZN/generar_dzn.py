@@ -8,7 +8,8 @@ def matrizdzn(matrix, filename="matrix_data.dzn"):
             f.write(f"  {row_str} |\n")
         f.write("|];\n")
 
-    print(f"File '{filename}' has been saved in .dzn format for MiniZinc.")
+    print(f"El archivo se guardo '{filename}'")
+
 
 
 

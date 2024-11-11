@@ -144,16 +144,21 @@ v = asignaciones(q, j)
 
 def matriz(diccionario):
     num_asignaturas = len(diccionario)
-    matriz = np.zeros((num_asignaturas, 35), dtype=int) 
+    matriz = np.zeros((num_asignaturas, 38), dtype=int) 
     for i, (key, asignatura_data) in enumerate(diccionario.items()):
         matriz[i, 0] = asignatura_data[0]  
         matriz[i, 1] = asignatura_data[1] 
         matriz[i, 2] = asignatura_data[2] 
         restricciones = asignatura_data[3]
-        limite_restricciones = min(len(restricciones), 32)
+        limite_restricciones = min(len(restricciones), 35)
         matriz[i, 3:3 + limite_restricciones] = restricciones[:limite_restricciones]
 
     return matriz
 
 qq = matriz(s)
 #print(qq)
+
+def recortada(matrix):
+    A = np.delete(matrix, [0,1,2], axis = 1)
+    return A
+
