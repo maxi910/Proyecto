@@ -25,3 +25,18 @@ def cant_alumnosdzn(cant_alumnos, filename="cantidad_alumnos.dzn"):
         f.write("cant_alumnos = [")
         f.write(", ".join(map(str, cantidad)))
         f.write("];\n")
+
+def prioridaddzn(prioridadd, filename="prioridad.dzn"):
+    with open(filename, 'w') as f:
+        prioridad = list(prioridadd.values())
+        f.write("Prioridad = [")
+        f.write(", ".join(map(str, prioridad)))
+        f.write("];\n")
+
+def tipobloquedzn(tipobloqueq, filename= "tipobloque.dzn"):
+    with open(filename, 'w') as f:
+        tbloque = list(tipobloqueq.values())
+        f.write("TipoBloque = [")
+        f.write(", ".join(map(str, tbloque)))
+        f.write("];\n")
+     

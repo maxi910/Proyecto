@@ -30,7 +30,7 @@ def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIG
     return prioridad_asignada #RETORNA UN DICCIONARIO
 
 z = prioridad_aleatoria(y,t)
-#print(z) 
+print(z) 
 
 def cant_alumnos(conjasignatura):
     cantidad_asignada = {}
@@ -40,7 +40,7 @@ def cant_alumnos(conjasignatura):
     return cantidad_asignada # retorna dic de llave asignatura_i : cantindad de alumnos
 
 w = cant_alumnos(y)
-print(w)
+#print(w)
 
 def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBLE!!
     doble_simple = {}
