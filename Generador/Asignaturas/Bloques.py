@@ -162,3 +162,6 @@ def recortada(matrix):
     A = np.delete(matrix, [0,1,2], axis = 1)
     return A
 
+
+def dummy(recortada):
+    return np.where(recortada == 0, 1, 0)
