@@ -165,3 +165,13 @@ def recortada(matrix):
 
 def dummy(recortada):
     return np.where(recortada == 0, 1, 0)
+
+
+def encasillar(recortada):
+    matriz_encasillada = np.zeros_like(recortada)
+    for i in range(recortada.shape[0]):
+        for num in recortada[i]:
+            if 1 <= num <= 35:
+                matriz_encasillada[i, num - 1] = num  
+    
+    return matriz_encasillada

@@ -1,5 +1,5 @@
 import random
-from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen, union, matriz, recortada, dummy
+from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen, union, matriz, recortada, dummy, encasillar
 from Salas.Salas import capacidad_salas, gens
 from DZN.generar_dzn import matrizdzn 
 
@@ -19,9 +19,11 @@ def main():
     diccionario = union(prioridad,cantidadalumnos,tipobloque,restriccionesbloques)
     matrix = matriz(diccionario)
     recortadad = recortada(matrix)
-    DUM = dummy(recortadad)
+    orden = encasillar(recortadad)
+    DUM = dummy(orden)
     matrizdzn(matrix, filename="matriz.dzn")
     matrizdzn(recortadad, filename="Matrizrecortada.dzn")
+    matrizdzn(orden, filename="Ordenada.dzn")
     matrizdzn(DUM, filename="Matrizdisponibilidad.dzn")
 
 
