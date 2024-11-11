@@ -11,5 +11,10 @@ def matrizdzn(matrix, filename="matrix_data.dzn"):
     print(f"El archivo se guardo '{filename}'")
 
 
-
+def capacidaddzn(capacidad_sala, filename="Capacidad_salas.dzn"):
+    with open(filename, 'w') as f:
+        capacidades = list(capacidad_sala.values())
+        f.write("capacidad salas= [")
+        f.write(", ".join(map(str, capacidades)))
+        f.write("];\n")
 
