@@ -40,7 +40,7 @@ def cant_alumnos(conjasignatura):
     return cantidad_asignada # retorna dic de llave asignatura_i : cantindad de alumnos
 
 w = cant_alumnos(y)
-#print(w)
+print(w)
 
 def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBLE!!
     doble_simple = {}
@@ -104,10 +104,7 @@ def disponibles(conjasignaturasrestringidas): #funcion en construccion
 
 q = disponibles(f)
 #print(q)
-
-def error_bloque_doble(q):
-    return 0
-    
+   
 
 def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios con la misma llave y hara que devuelva un nuevo diccionario = {Asignatura : prioridad, cantindad, tipo, tupla}
     diccionario__asignatura = {}
@@ -162,10 +159,8 @@ def recortada(matrix):
     A = np.delete(matrix, [0,1,2], axis = 1)
     return A
 
-
 def dummy(recortada):
     return np.where(recortada == 0, 1, 0)
-
 
 def encasillar(recortada):
     matriz_encasillada = np.zeros_like(recortada)

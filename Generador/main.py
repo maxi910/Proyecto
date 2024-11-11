@@ -1,7 +1,7 @@
 import random
 from Asignaturas.Bloques import cant_alumnos, prioridad_aleatoria, indispensable, tipo_bloque, bloques_restriccion, gen, union, matriz, recortada, dummy, encasillar
 from Salas.Salas import capacidad_salas, gens
-from DZN.generar_dzn import matrizdzn, capacidaddzn
+from DZN.generar_dzn import matrizdzn, capacidaddzn, cant_alumnosdzn
 
  
 def main():
@@ -27,6 +27,7 @@ def main():
     matrizdzn(orden, filename="Ordenada.dzn")
     matrizdzn(DUM, filename="Matrizdisponibilidad.dzn")
     capacidaddzn(capacidadsala, filename = "Capacidad_salas.dzn")
+    cant_alumnosdzn(cantidadalumnos, filename = "cant_alumnos.dzn")
 
 
     print("Archivos instancia.dzn generado exitosamente.")

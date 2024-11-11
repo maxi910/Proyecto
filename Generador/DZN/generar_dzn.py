@@ -18,3 +18,10 @@ def capacidaddzn(capacidad_sala, filename="Capacidad_salas.dzn"):
         f.write(", ".join(map(str, capacidades)))
         f.write("];\n")
 
+
+def cant_alumnosdzn(cant_alumnos, filename="cantidad_alumnos.dzn"):
+    with open(filename, 'w') as f:
+        cantidad = list(cant_alumnos.values())
+        f.write("cant_alumnos = [")
+        f.write(", ".join(map(str, cantidad)))
+        f.write("];\n")
