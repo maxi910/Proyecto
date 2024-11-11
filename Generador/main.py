@@ -21,6 +21,7 @@ def main():
     recortadad = recortada(matrix)
     DUM = dummy(recortadad)
     matrizdzn(matrix, filename="matriz.dzn")
+    matrizdzn(recortadad, filename="Matrizrecortada.dzn")
     matrizdzn(DUM, filename="Matrizdisponibilidad.dzn")
 
 
