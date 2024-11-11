@@ -1,23 +1,21 @@
 import random
 import numpy as np
 
-#ESTA PARTE DEL CODIGO GENERA LAS ASIGNATURAS Y PARTICIONA EL CONJUNTO DE ASIGNATURAS EN INDISPENSABLES Y DISPENSABLES, LAS RESTRICCIONES HAN DE IR EN OTRO LADO!!
-#PARA VER Q MIERDA HACE EL CODIGO SIMPLEMENTE HAY QUE PRINTEAR LO ULTIMO, el codigo al final ordena las asiganturas por prioridad
 def gen(n):
     asignaturas = []
     for i in range(n):
         asignaturas.append(f"asignatura_{i}")
     return asignaturas 
 
-asignaturas_generadas = gen(40)
-
-y = asignaturas_generadas #CONJASIGNATURA
+#asignaturas_generadas = gen(40)
+#y = asignaturas_generadas #CONJASIGNATURA
 #print(y)
 
 def indispensable(conjasignatura): #RETORNA UNA LISTA DE LARGO len(conjasignatura//5)
     indispensable = random.sample(conjasignatura, len(conjasignatura)//5)
     return indispensable 
-t = indispensable(y)
+
+#t = indispensable(y)
 #print(t)
 
 def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIGNATURAS Y LA DE ASIGNATURAS INDISPENSABLES
@@ -30,7 +28,7 @@ def prioridad_aleatoria(conjasignatura, indispensable): #RECIBE LA LISTA DE ASIG
     return prioridad_asignada #RETORNA UN DICCIONARIO
 
 z = prioridad_aleatoria(y,t)
-print(z) 
+#print(z) 
 
 def cant_alumnos(conjasignatura):
     cantidad_asignada = {}
@@ -39,17 +37,17 @@ def cant_alumnos(conjasignatura):
         cantidad_asignada[asignatura] = cantidad_i
     return cantidad_asignada # retorna dic de llave asignatura_i : cantindad de alumnos
 
-w = cant_alumnos(y)
+#w = cant_alumnos(y)
 #print(w)
 
 def tipo_bloque(conjasignatura): #POR CONVENCION NUESTRA 0 ES SIMPLE Y 1 ES DOBLE!!
     doble_simple = {}
     for asignatura in conjasignatura:
-        tipo_i = random.choices([0, 1], weights=[35, 65])[0]
+        tipo_i = random.choices([0, 1], weights=[65, 35])[0]
         doble_simple[asignatura] = tipo_i
     return doble_simple
 
-j = tipo_bloque(y) 
+#j = tipo_bloque(y) 
 #print(j)
 
 def ordenar_prioridad(conjprioridadasignada):
@@ -60,7 +58,7 @@ def ordenar_prioridad(conjprioridadasignada):
     ordenar = dict(sorted(conjprioridadasignada.items(), key=lambda item: item[1], reverse=True))
     return ordenar
 
-k = ordenar_prioridad(z) #OJO ES Z NO Y 
+#k = ordenar_prioridad(z) #OJO ES Z NO Y 
 #print(k)
 
 def conjprioridad(conjprioridad): #Esta funcion deberia funcionar me da paja arreglar el tema con mi compu pero demas corre
@@ -70,7 +68,7 @@ def conjprioridad(conjprioridad): #Esta funcion deberia funcionar me da paja arr
             dic_conjprioridad[clave] = valor  
     return dic_conjprioridad
 
-l = conjprioridad(k)
+#l = conjprioridad(k)
 #print(l)
 
 def bloques_restriccion(conjasignatura, tipo):
@@ -90,7 +88,7 @@ def bloques_restriccion(conjasignatura, tipo):
 
     return restricciones
 
-f = bloques_restriccion(y, j)
+#f = bloques_restriccion(y, j)
 #print(f)
 
 def disponibles(conjasignaturasrestringidas): #funcion en construccion
@@ -102,7 +100,7 @@ def disponibles(conjasignaturasrestringidas): #funcion en construccion
     
     return Permitidos
 
-q = disponibles(f)
+#q = disponibles(f)
 #print(q)
    
 
@@ -112,17 +110,15 @@ def union(prioridad,cantidad,tipo,restriccion): #Se le ingresa 4 diccionarios co
         diccionario__asignatura[asignatura] = (prioridad[asignatura], cantidad[asignatura], tipo[asignatura], restriccion[asignatura])
     return diccionario__asignatura
 
-s = union(k,w,j,f)
+#s = union(k,w,j,f)
 #print(s)
-#si tipo[asignatura]==1:
-    #no puede tomar el bloque 7
 
 #SI QUIERO SOLO LOS INDISPENSABLES entonces hago este
 
-a = union(l,w,j,f)
+#a = union(l,w,j,f)
 #print(a)
 
-#falta decir q la wea de bloque no pase del 7 al 1 del dia sgte y asignar prioridad a la asignacion de salas, esto es: PRIORIDAD>TIPO>CANTIDAD
+#PRIORIDAD>TIPO>CANTIDAD
 
 def asignaciones(Permitidos, tipo): 
     asignaciones = {}
@@ -136,7 +132,7 @@ def asignaciones(Permitidos, tipo):
           asignaciones[asignatura]=[random.choice(Permitidos[asignatura])]
     return asignaciones
 
-v = asignaciones(q, j)
+#v = asignaciones(q, j)
 #print(v)
 
 def matriz(diccionario):
@@ -152,7 +148,7 @@ def matriz(diccionario):
 
     return matriz
 
-qq = matriz(s)
+#qq = matriz(s)
 #print(qq)
 
 def recortada(matrix):
